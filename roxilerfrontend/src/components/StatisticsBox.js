@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const StatisticsBox = ({ selectedMonth }) => {
   const [statistics, setStatistics] = useState({
@@ -14,7 +14,9 @@ const StatisticsBox = ({ selectedMonth }) => {
     const fetchStatistics = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:3001/api/statistics?month=${selectedMonth}`);
+        const response = await axios.get(
+          `http://localhost:3001/api/statistics?month=${selectedMonth}`
+        );
         setStatistics(response.data);
       } catch (err) {
         setError(err.message);
@@ -24,7 +26,7 @@ const StatisticsBox = ({ selectedMonth }) => {
     };
 
     fetchStatistics();
-  }, [selectedMonth]); // Fetch statistics whenever the selected month changes
+  }, [selectedMonth]);
 
   if (loading) {
     return <p>Loading statistics...</p>;

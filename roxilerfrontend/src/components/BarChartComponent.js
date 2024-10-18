@@ -13,22 +13,21 @@ import {
 
 const BarChartComponent = ({ selectedMonth }) => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(null); // Add error state to handle potential issues
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchBarChartData();
   }, [selectedMonth]);
 
   const fetchBarChartData = async () => {
-    console.log("Selected Month:", selectedMonth); // Log the selected month before the API call
+    console.log("Selected Month:", selectedMonth);
 
     try {
       const response = await axios.get("http://localhost:3001/api/bar-chart", {
         params: { month: selectedMonth },
       });
       setData(response.data);
-      console.log("Data State:", response.data); // Log the response data
-
+      console.log("Data State:", response.data);
     } catch (err) {
       console.error("Error fetching bar chart data:", err);
       setError("Failed to load data. Please try again.");
@@ -44,7 +43,7 @@ const BarChartComponent = ({ selectedMonth }) => {
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="range" /> {/* Change to 'range' */}
+            <XAxis dataKey="range" />
             <YAxis />
             <Tooltip />
             <Legend />

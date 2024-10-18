@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import './TransactionsTable.css'; // Import your CSS file here
+import "./TransactionsTable.css";
 
 function TransactionsTable({ selectedMonth }) {
   const [transactions, setTransactions] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [month, setMonth] = useState("3"); // Default to March
-  const [error, setError] = useState(null); // State for error handling
+  const [month, setMonth] = useState("3");
+  const [error, setError] = useState(null);
 
   const fetchTransactions = async () => {
     try {
@@ -19,18 +19,16 @@ function TransactionsTable({ selectedMonth }) {
         },
       });
       setTransactions(response.data.transactions);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Error fetching transactions:", error);
-      setError("Failed to load transactions. Please try again."); // Set error message
+      setError("Failed to load transactions. Please try again.");
     }
   };
-  
-  // The useEffect to fetch transactions based on searchQuery and page
+
   useEffect(() => {
     fetchTransactions();
-  }, [searchQuery, page, selectedMonth]); // Adjust if needed
-  
+  }, [searchQuery, page, selectedMonth]);
 
   return (
     <div className="table-container">
@@ -64,7 +62,11 @@ function TransactionsTable({ selectedMonth }) {
               <td>{transaction.category}</td>
               <td>{transaction.sold ? "Yes" : "No"}</td>
               <td>
-                <img src={transaction.image} alt={transaction.title} style={{ width: '50px', height: '50px' }} />
+                <img
+                  src={transaction.image}
+                  alt={transaction.title}
+                  style={{ width: "50px", height: "50px" }}
+                />
               </td>
             </tr>
           ))}
@@ -79,4 +81,3 @@ function TransactionsTable({ selectedMonth }) {
 }
 
 export default TransactionsTable;
-

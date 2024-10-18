@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import StatisticsBox from './components/StatisticsBox'; // Uncomment if you implement this component later
-import BarChartComponent from './components/BarChartComponent';
-import TransactionsTable from './components/TransactionsTable';
+import React, { useState } from "react";
+import axios from "axios";
+import StatisticsBox from "./components/StatisticsBox";
+import BarChartComponent from "./components/BarChartComponent";
+import TransactionsTable from "./components/TransactionsTable";
 
 const App = () => {
-  const [selectedMonth, setSelectedMonth] = useState('03'); // Default month set to March
-  const [searchText, setSearchText] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState("03");
+  const [searchText, setSearchText] = useState("");
 
   const handleMonthChange = (e) => {
-    setSelectedMonth(e.target.value); // Update the selected month
+    setSelectedMonth(e.target.value);
   };
 
   return (
-    <div className='container'>
+    <div className="container">
       <h1>Transactions Dashboard</h1>
-      
+
       <div>
         <label>Month: </label>
         <select value={selectedMonth} onChange={handleMonthChange}>
@@ -37,10 +37,9 @@ const App = () => {
       <TransactionsTable
         selectedMonth={selectedMonth}
         searchText={searchText}
-        setSearchText={setSearchText} 
+        setSearchText={setSearchText}
       />
-      
-      
+
       <StatisticsBox selectedMonth={selectedMonth} />
 
       <BarChartComponent selectedMonth={selectedMonth} />
